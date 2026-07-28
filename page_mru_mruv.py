@@ -68,7 +68,7 @@ class MruMruvPage(ctk.CTkFrame):
     
     def _build_aba_mruv(self, tab):
         self._tab_mruv = tab
-        scroll = ctk.CTkScrollableFrame(tab, width=800, height=600)
+        scroll = ctk.CTkScrollableFrame(tab, width=850, height=650)
         scroll.pack(fill="both", expand=True, padx=5, pady=5)
         self.checar_box_mruv1 = ctk.BooleanVar(value=False)
         self.checar_box_mruv2 = ctk.BooleanVar(value=False)
