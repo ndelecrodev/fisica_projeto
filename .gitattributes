@@ -1,0 +1,49 @@
+# Auto detect text files and normalize line endings to LF in the repository
+* text=auto eol=lf
+
+# ---- Python ----
+*.py text diff=python
+*.pyi text diff=python
+*.pyw text diff=python
+
+# Byte-compiled / cache artifacts are always binary
+*.pyc binary
+*.pyo binary
+*.pyd binary
+
+# ---- Documentation / text ----
+*.md text diff=markdown
+*.txt text
+.gitattributes text
+.gitignore text
+LICENSE text
+
+# ---- Windows scripts keep CRLF ----
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+
+# ---- Shell scripts keep LF ----
+*.sh text eol=lf
+
+# ---- Binary assets ----
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.bmp binary
+*.pdf binary
+*.zip binary
+*.exe binary
+*.dll binary
+*.so binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# ---- Linguist hints (GitHub language stats) ----
+docs/** linguist-documentation
+assets/** linguist-vendored
+*.ico linguist-generated
