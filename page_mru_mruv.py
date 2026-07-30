@@ -338,15 +338,19 @@ class MruMruvPage(ctk.CTkFrame):
         ctk.CTkLabel(janela, text=erro, text_color="red").place(relx=0.5, rely=0.5, anchor="center")
         janela.after(10000, janela.destroy)
 
+    @staticmethod
+    def _to_float(texto: str) -> float:
+        """Converte texto digitado em float, aceitando vírgula ou ponto como separador decimal."""
+        return float(texto.strip().replace(",", "."))
+
     def calcularMru(self):
 
         try:
 
                 if self.check_var1.get():
-                        entry_mru_s0 = float(self.entry_s0.get().strip())
-                        entry_mru_v = float(self.entry_v.get().strip())
-                        entry_mru_t = float(self.entry_t.get().strip())
-                        resultado = Mru(entry_mru_s0, entry_mru_v,).calcularPosicaoFinal(entry_mru_t)
+                        entry_mru_s0 = self._to_float(self.entry_s0.get())
+                        entry_mru_v = self._to_float(self.entry_v.get())
+                        entry_mru_t = self._to_float(self.entry_t.get())
                         self._dialog_resposta_mru(Mru().calcularPosicaoFinal(t=entry_mru_t, s0=entry_mru_s0, v=entry_mru_v), "Posição Final", s0=entry_mru_s0, v=entry_mru_v, t=entry_mru_t)
                         self.entry_t.delete(0,"end")
                         self.entry_v.delete(0,"end")
@@ -354,16 +358,16 @@ class MruMruvPage(ctk.CTkFrame):
 
                 elif self.check_var2.get():
                         if self.check_var4.get():
-                            entry_mru_t = float(self.entry_t.get().strip())
-                            entry_delta = float(self.entry_d.get().strip())
+                            entry_mru_t = self._to_float(self.entry_t.get())
+                            entry_delta = self._to_float(self.entry_d.get())
                             resultado = Mru().calcular_velocidade_espaco(entry_delta, entry_mru_t)
                             self._dialog_resposta_mru(resultado, "Velocidade(v)", v=resultado, t=entry_mru_t)
                             self.entry_v.delete(0,"end")
-                            self.entry_d.delete(0,"end") 
+                            self.entry_d.delete(0,"end")
                         else:
-                            entry_mru_t = float(self.entry_t.get().strip())
-                            entry_mru_s0 = float(self.entry_s0.get().strip())
-                            entry_mru_s = float(self.entry_sf.get().strip())
+                            entry_mru_t = self._to_float(self.entry_t.get())
+                            entry_mru_s0 = self._to_float(self.entry_s0.get())
+                            entry_mru_s = self._to_float(self.entry_sf.get())
                             resultado = Mru().calcular_velocidade(entry_mru_s0, entry_mru_t, entry_mru_s)
                             self._dialog_resposta_mru(resultado, "Velocidade(v)", s0=entry_mru_s0, v=resultado, t=entry_mru_t)
                             self.entry_t.delete(0,"end")
@@ -372,16 +376,16 @@ class MruMruvPage(ctk.CTkFrame):
                         
                 elif self.check_var3.get():
                     if self.check_var4.get():
-                        entry_mru_v = float(self.entry_v.get().strip())
-                        entry_delta = float(self.entry_d.get().strip())
+                        entry_mru_v = self._to_float(self.entry_v.get())
+                        entry_delta = self._to_float(self.entry_d.get())
                         resultado = Mru().calcular_tempo_espaco(entry_delta, entry_mru_v)
                         self._dialog_resposta_mru(resultado, "Tempo(t)", v=entry_mru_v, t=resultado)
                         self.entry_v.delete(0,"end")
                         self.entry_d.delete(0,"end")
                     else:
-                        entry_mru_v = float(self.entry_v.get().strip())
-                        entry_mru_s0 = float(self.entry_s0.get().strip())
-                        entry_mru_s = float(self.entry_sf.get().strip())
+                        entry_mru_v = self._to_float(self.entry_v.get())
+                        entry_mru_s0 = self._to_float(self.entry_s0.get())
+                        entry_mru_s = self._to_float(self.entry_sf.get())
                         resultado = Mru().calcular_tempo(entry_mru_s,entry_mru_s0, entry_mru_v)
                         self._dialog_resposta_mru(resultado, "Tempo(t)",s0=entry_mru_s0, v=entry_mru_v, t=resultado)
                         self.entry_v.delete(0,"end")
@@ -412,7 +416,7 @@ class MruMruvPage(ctk.CTkFrame):
     def calcularMruv(self):
         def pegar(entry):
             val = entry.get().strip()
-            return float(val) if val else None
+            return self._to_float(val) if val else None
         try:
         
             s0 = pegar(self.entry_s02)
